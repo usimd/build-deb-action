@@ -141,6 +141,16 @@ jobs:
           test -f debian/artifacts/test_1_amd64.buildinfo
           test -f debian/artifacts/test_1_amd64.changes
 
+  package-bash:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: git clone https://salsa.debian.org/debian/bash.git bash
+      - uses: ./
+        with:
+          buildpackage-opts: --build=binary --no-sign
+          source-dir: bash
+
   single-package:
     runs-on: ubuntu-latest
     steps:
